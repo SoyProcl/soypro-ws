@@ -3,8 +3,10 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 10
+      nodejs: 12
     commands:
+      # Install typescript
+      - npm install -g typescript
       # Install dependencies needed for running tests
       - npm install
 
@@ -12,6 +14,8 @@ phases:
       - pip3 install --upgrade awscli
   pre_build:
     commands:
+      # Build ts files
+      - npm run build
       # Discover and run unit tests in the 'tests' directory
       - npm test
   post_build:
