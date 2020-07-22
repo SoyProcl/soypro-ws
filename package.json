@@ -22,6 +22,6 @@
         "start": "node dist/server.js",
         "dev": "nodemon src/server.ts",
         "build": "tsc -p .",
-        "test": "mocha --recursive tests --exit"
+        "test": "mocha --recursive dist/tests --exit"
     }
 }
