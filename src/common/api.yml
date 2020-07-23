@@ -1,0 +1,192 @@
+openapi: 3.0.1
+info:
+  title: soyPro-api
+  description: SoyPro Api
+  version: 1.0.0
+servers:
+  - url: /api/v1
+tags:
+  - name: Examples
+    description: Simple example endpoints
+  - name: Specification
+    description: The swagger API specification
+paths:
+  /user:
+    get:
+      tags:
+        - Users
+      description: Fetch all users
+      responses:
+        200:
+          description: Returns all users
+          content: {}
+  /pro:
+    post:
+      tags:
+        - Pro
+      description: Create a new Pro
+      requestBody:
+        description: an Pro
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProBody'
+        required: true
+      responses:
+        200:
+          description: Create new Pro
+          content: {}
+  /speciality:
+    post:
+      tags:
+        - Speciality
+      description: Create a new Speciality
+      requestBody:
+        description: an Speciality
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpecialityBody'
+        required: true
+      responses:
+        200:
+          description: Returns all examples
+          content: {}
+    get:
+      tags:
+        - specialities
+      description: Fetch all specialities
+      responses:
+        200:
+          description: Returns all specialities
+          content: {}
+
+  /location/{type}:
+    get:
+      tags:
+        - Location
+      parameters:
+        - name: type
+          in: path
+          description: The id of the location to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Return the example with the specified id
+          content: {}
+        404:
+          description: Example not found
+          content: {}
+    post:
+      tags:
+        - Location
+      description: Create a new location
+      requestBody:
+        description: an example
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationBody'
+        required: true
+      responses:
+        200:
+          description: Returns all examples
+          content: {}
+
+  /spec:
+    get:
+      tags:
+        - Specification
+      responses:
+        200:
+          description: Return the API specification
+          content: {}
+components:
+  schemas:
+    SpecialityBody:
+      title: speciality
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          example: maestro
+        custom:
+          type: boolean
+          example: true
+    ExampleBody:
+      title: example
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          example: no_stress
+    LocationBody:
+      title: location
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          example: location name
+        region:
+          type: string
+          example: region
+        active:
+          type: boolean
+          example: true
+    ProBody:
+      title: Pro
+      required:
+        - name
+        - lastName
+        - phone
+        - specialities
+        - placeToWork
+      type: object
+      properties:
+        name:
+          type: string
+          example: name
+        lastName:
+          type: string
+          example: last name
+        businessName:
+          type: string
+          example: business name
+        email:
+          type: string
+          example: email
+        phone:
+          type: string
+          example: phone
+        specialities:
+          type: array
+        placeToWork:
+          type: array
+        institutions:
+          type: array
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+            number:
+              type: number
+            region:
+              type: string
+            city:
+              type: string
+        identification:
+          type: object
+          properties:
+            type:
+              type: string
+            value:
+              type: string
