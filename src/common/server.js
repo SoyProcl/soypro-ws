@@ -1,7 +1,7 @@
 import Express from "express";
 import * as Sentry from "@sentry/node";
 import moesifExpress from "moesif-express";
-/* import { connect } from './../@core/cache' */
+import { connect } from "./../@core/cache";
 import * as path from "path";
 import * as bodyParser from "body-parser";
 import * as http from "http";
@@ -15,10 +15,10 @@ import l from "./logger";
 
 export const app = new Express();
 
-/* connect(cache => {
-  console.log(cache)
-})
- */
+connect((cache) => {
+  console.log(cache);
+});
+
 Sentry.init({
   dsn: "https://c7bf6c75a5724b6d99debad4afaad732@sentry.io/1491441",
 });
